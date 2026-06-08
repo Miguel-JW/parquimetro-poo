@@ -1,0 +1,241 @@
+/* =============================================
+   styles.css — Parquímetro
+============================================= */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:      #0f172a;
+  --surface: #1e293b;
+  --border:  #334155;
+  --text:    #f1f5f9;
+  --muted:   #94a3b8;
+  --accent:  #38bdf8;
+  --green:   #4ade80;
+  --yellow:  #facc15;
+  --red:     #f87171;
+  --radius:  14px;
+  --font:    'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: var(--font);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ─── Card ─── */
+.container {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 460px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,.55);
+}
+
+/* ─── Header ─── */
+.card-header {
+  text-align: center;
+  padding: 36px 32px 24px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(160deg, #0c1a36 0%, #1e293b 100%);
+}
+
+.icon { font-size: 2.6rem; display: block; margin-bottom: 10px; }
+
+.card-header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 6px; }
+.card-header p  { font-size: 13px; color: var(--muted); }
+
+/* ─── Body ─── */
+.card-body { padding: 28px 32px 32px; }
+
+/* ─── Tabela de valores ─── */
+.tabela { margin-bottom: 28px; }
+
+.tabela-titulo {
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.tabela-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.tabela-item {
+  background-color: #0f172a;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tabela-item--destaque {
+  border-color: var(--accent);
+  background-color: rgba(56,189,248,.05);
+}
+
+.tabela-valor { font-size: 14px; font-weight: 700; color: var(--accent); }
+.tabela-tempo { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+
+.badge {
+  font-size: 9px;
+  background-color: var(--accent);
+  color: #0f172a;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: .04em;
+}
+
+/* ─── Formulário ─── */
+.form-group { display: flex; flex-direction: column; gap: 10px; }
+
+label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  background-color: #0f172a;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.input-wrap:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(56,189,248,.15);
+}
+
+.input-prefix {
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  border-right: 1px solid var(--border);
+  background-color: rgba(56,189,248,.05);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+input[type="number"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.1rem;
+  font-family: var(--font);
+  padding: 13px 16px;
+  outline: none;
+}
+
+input[type="number"]::placeholder { color: #334155; }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+button#btnCalcular {
+  width: 100%;
+  background-color: var(--accent);
+  color: #0f172a;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  cursor: pointer;
+  padding: 14px;
+  transition: opacity .2s, transform .15s;
+}
+
+button#btnCalcular:hover  { opacity: .85; transform: translateY(-1px); }
+button#btnCalcular:active { transform: translateY(0); }
+
+/* ─── Resultado ─── */
+.resultado {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.resultado.animar { animation: fadeSlide .3s ease both; }
+
+.resultado.sucesso {
+  background-color: rgba(74,222,128,.06);
+  border: 1px solid rgba(74,222,128,.25);
+  padding: 20px;
+}
+
+.resultado.erro {
+  background-color: rgba(248,113,113,.08);
+  border: 1px solid rgba(248,113,113,.25);
+  padding: 14px 18px;
+}
+
+.erro-msg { font-size: 14px; color: var(--red); }
+
+.res-grid { display: flex; flex-direction: column; gap: 14px; }
+
+.res-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.res-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+.res-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.res-valor {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.res-valor.troco { color: var(--yellow); }
+
+.badge-maximo {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--accent);
+  border-top: 1px solid rgba(56,189,248,.2);
+  padding-top: 12px;
+  text-align: center;
+  letter-spacing: .03em;
+}
